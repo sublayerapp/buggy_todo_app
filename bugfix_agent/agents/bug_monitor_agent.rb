@@ -54,7 +54,8 @@ class BugMonitorAgent < Sublayer::Agents::Base
     <<-MSG
     We received a bug report titled: #{task_name} with a description of: #{task_description}
 
-    First write a test covering this bug and then fix this bug and only this bug
+    First make sure to view all files that could be relevant for this bug including test files, view files, controller files, and model files.
+    Then come up with a plan for how to tackle it, thinking about and writing the test first and then implementing the change
     If you need to add any fields to the database, create a new migration rather than editing existing ones
     MSG
   end
