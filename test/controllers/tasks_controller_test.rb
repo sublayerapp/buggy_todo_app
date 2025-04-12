@@ -1,6 +1,12 @@
 require "test_helper"
 
 class TasksControllerTest < ActionDispatch::IntegrationTest
+  test "should only display incomplete tasks" do
+    get tasks_url
+    assert_response :success
+    tasks = assigns(:tasks)
+    assert tasks.all? { |task| !task.completed }, "All tasks should be incomplete"
+  end
   setup do
     @task = tasks(:one)
   end
