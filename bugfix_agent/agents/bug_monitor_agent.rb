@@ -1,7 +1,7 @@
 require "pry"
 
 class BugMonitorAgent < Sublayer::Agents::Base
-  REPO_PATH = "../.."
+  REPO_PATH = File.expand_path("../..", __FILE__)
   GITHUB_REPO = "sublayerapp/buggy_todo_app" # Replace with your fork or repo
   MODELS = ["gpt-4o", "claude-3-5-sonnet-latest", "gemini/gemini-2.0-flash"]
 
