@@ -1,6 +1,15 @@
 require "test_helper"
 
 class TasksControllerTest < ActionDispatch::IntegrationTest
+  test "should only display incomplete tasks" do
+    Task.create!(title: "Incomplete Task", completed: false)
+    Task.create!(title: "Completed Task", completed: true)
+
+    get tasks_url
+    assert_response :success
+    assert_select "td", text: "Incomplete Task"
+    assert_select "td", text: "Completed Task", count: 0
+  end
   setup do
     @task = tasks(:one)
   end
