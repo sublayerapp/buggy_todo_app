@@ -14,6 +14,6 @@ class RunAiderCommandAction < Sublayer::Actions::Base
       "CLAUDE.md"
     )
 
-    [stdout, stderr, status]
+    [ stdout, stderr, status ]
   end
 end
