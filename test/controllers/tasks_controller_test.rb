@@ -10,6 +10,18 @@ class TasksControllerTest < ActionDispatch::IntegrationTest
     assert_response :success
   end
 
+  test "should only show incomplete tasks in index" do
+    completed_task = Task.create!(title: "Completed task", completed: true)
+    incomplete_task = Task.create!(title: "Incomplete task", completed: false)
+    
+    get tasks_url
+    assert_response :success
+    
+    assert_select "tr", count: 3  # 2 rows + 1 header row
+    assert_select "td", text: completed_task.title, count: 0
+    assert_select "td", text: incomplete_task.title, count: 1
+  end
+
   test "should get new" do
     get new_task_url
     assert_response :success
