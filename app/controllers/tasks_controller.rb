@@ -60,11 +60,11 @@ class TasksController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_task
-      @task = Task.find(params.expect(:id))
+      @task = Task.find(params[:id])
     end
 
     # Only allow a list of trusted parameters through.
     def task_params
-      params.expect(task: [ :title, :completed ])
+      params.require(:task).permit(:title, :completed)
     end
 end
