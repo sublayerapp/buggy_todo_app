@@ -9,4 +9,9 @@
     <%= task.completed %>
   </p>
 
+  <p>
+    <strong>Tags:</strong>
+    <%= task.tags.map(&:name).join(", ") %>
+  </p>
+
 </div>
