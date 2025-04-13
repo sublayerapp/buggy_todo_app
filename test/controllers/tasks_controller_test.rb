@@ -44,5 +44,12 @@ class TasksControllerTest < ActionDispatch::IntegrationTest
     end
 
     assert_redirected_to tasks_url
+  test "should only display incomplete tasks" do
+    Task.create(title: "Complete Task", completed: true)
+    Task.create(title: "Incomplete Task", completed: false)
+    get tasks_url
+    assert_response :success
+    assert_equal 1, assigns(:tasks).size
+    assert_equal "Incomplete Task", assigns(:tasks).first.title
   end
 end
