@@ -45,4 +45,13 @@ class TasksControllerTest < ActionDispatch::IntegrationTest
 
     assert_redirected_to tasks_url
   end
+
+  test "should only display incomplete tasks" do
+    get tasks_url
+    assert_response :success
+    @tasks = assigns(:tasks)
+    @tasks.each do |task|
+      assert_equal false, task.completed, "Task should be incomplete"
+    end
+  end
 end
