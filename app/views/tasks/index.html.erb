@@ -6,10 +6,7 @@
 
 <div id="tasks">
   <% @tasks.each do |task| %>
-    <%= render task %>
-    <p>
-      <%= link_to "Show this task", task %>
-    </p>
+    <%= link_to task.title, task_path(task) %><br>
   <% end %>
 </div>
 

@@ -34,6 +34,13 @@ class TasksTest < ApplicationSystemTestCase
     click_on "Back"
   end
 
+  test "clicking a task on the index page redirects to the show page" do
+    task = Task.create(title: "Test Task", completed: false)
+    visit tasks_url
+    click_link task.title
+    assert_current_path task_path(task)
+  end
+
   test "should destroy Task" do
     visit task_url(@task)
     click_on "Destroy this task", match: :first
