@@ -5,9 +5,18 @@ class TasksControllerTest < ActionDispatch::IntegrationTest
     @task = tasks(:one)
   end
 
-  test "should get index" do
+  test "should get index showing only incomplete tasks" do
+    # Create a completed task
+    Task.create!(title: "Completed task", completed: true)
+    # Create an incomplete task
+    incomplete_task = Task.create!(title: "Incomplete task", completed: false)
+    
     get tasks_url
     assert_response :success
+    
+    # Verify only incomplete tasks are shown
+    assert_includes assigns(:tasks), incomplete_task
+    assert_equal assigns(:tasks).count, Task.incomplete.count
   end
 
   test "should get new" do
