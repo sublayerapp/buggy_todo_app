@@ -5,6 +5,14 @@ class TasksTest < ApplicationSystemTestCase
     @task = tasks(:one)
   end
 
+  test "clicking a task redirects to the task's show page" do
+    visit tasks_path
+    first_task = Task.first
+    click_link first_task.title
+    assert_current_path task_path(first_task)
+    assert_text first_task.title
+  end
+
   test "visiting the index" do
     visit tasks_url
     assert_selector "h1", text: "Tasks"
