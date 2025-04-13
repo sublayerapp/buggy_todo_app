@@ -5,6 +5,11 @@ class TasksTest < ApplicationSystemTestCase
     @task = tasks(:one)
   end
 
+  test "visiting the index only shows incomplete tasks" do
+    visit tasks_url
+    assert_no_text "Completed"
+  end
+
   test "visiting the index" do
     visit tasks_url
     assert_selector "h1", text: "Tasks"
