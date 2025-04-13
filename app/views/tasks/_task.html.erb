@@ -1,12 +1,13 @@
-<div id="<%= dom_id task %>">
-  <p>
-    <strong>Title:</strong>
-    <%= task.title %>
-  </p>
+<%= link_to task_path(task), id: dom_id(task), class: "task-link" do %>
+  <div>
+    <p>
+      <strong>Title:</strong>
+      <%= task.title %>
+    </p>
 
-  <p>
-    <strong>Completed:</strong>
-    <%= task.completed %>
-  </p>
-
-</div>
+    <p>
+      <strong>Completed:</strong>
+      <%= task.completed %>
+    </p>
+  </div>
+<% end %>

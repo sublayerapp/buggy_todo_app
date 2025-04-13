@@ -10,6 +10,13 @@ class TasksTest < ApplicationSystemTestCase
     assert_selector "h1", text: "Tasks"
   end
 
+  test "clicking a task shows its details" do
+    visit tasks_url
+    click_on @task.title
+    assert_current_path task_path(@task)
+    assert_text @task.title
+  end
+
   test "should create task" do
     visit tasks_url
     click_on "New task"
