@@ -2,6 +2,11 @@
 
 <%= render @task %>
 
+<p>
+  <strong>Tags:</strong>
+  <%= @task.tags.join(", ") %>
+</p>
+
 <div>
   <%= link_to "Edit this task", edit_task_path(@task) %> |
   <%= link_to "Back to tasks", tasks_path %>

@@ -16,6 +16,7 @@ class TasksTest < ApplicationSystemTestCase
 
     check "Completed" if @task.completed
     fill_in "Title", with: @task.title
+    fill_in "Tags", with: "tag1, tag2"
     click_on "Create Task"
 
     assert_text "Task was successfully created"
@@ -28,6 +29,7 @@ class TasksTest < ApplicationSystemTestCase
 
     check "Completed" if @task.completed
     fill_in "Title", with: @task.title
+     fill_in "Tags", with: "tag3, tag4"
     click_on "Update Task"
 
     assert_text "Task was successfully updated"

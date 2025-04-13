@@ -22,6 +22,24 @@
   </div>
 
   <div>
+    <%= form.label :tags, style: "display: block" %>
+    <%= form.text_field :tags %>
+  </div>
+
+  <div>
     <%= form.submit %>
   </div>
 <% end %>
+```
+
+Next, I'll modify the `index.html.erb` to display the tags.
+
+app/views/tasks/index.html.erb
+```erb
+<<<<<<< SEARCH
+    <%= render task %>
+    <p>
+      <%= link_to "Show this task", task %>
+    </p>
+  <% end %>
+</div>
