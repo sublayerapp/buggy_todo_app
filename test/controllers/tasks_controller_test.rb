@@ -10,6 +10,15 @@ class TasksControllerTest < ActionDispatch::IntegrationTest
     assert_response :success
   end
 
+  test "should only display incomplete tasks" do
+    incomplete_task = Task.create(title: "Incomplete Task", completed: false)
+    complete_task = Task.create(title: "Complete Task", completed: true)
+    get tasks_url
+    assert_response :success
+    assert_includes(@response.body, incomplete_task.title)
+    assert_not_includes(@response.body, complete_task.title)
+  end
+
   test "should get new" do
     get new_task_url
     assert_response :success
