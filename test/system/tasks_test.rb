@@ -16,6 +16,7 @@ class TasksTest < ApplicationSystemTestCase
 
     check "Completed" if @task.completed
     fill_in "Title", with: @task.title
+    fill_in "Tags (comma separated)", with: "urgent, important"
     click_on "Create Task"
 
     assert_text "Task was successfully created"

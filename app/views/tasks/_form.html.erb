@@ -18,7 +18,12 @@
 
   <div>
     <%= form.label :completed, style: "display: block" %>
-    <%= form.checkbox :completed %>
+    <%= form.check_box :completed %>
+  </div>
+
+  <div>
+    <%= form.label :tag_list, "Tags (comma separated)", style: "display: block" %>
+    <%= form.text_field :tag_list %>
   </div>
 
   <div>
