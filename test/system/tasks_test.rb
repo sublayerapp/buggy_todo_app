@@ -1,6 +1,15 @@
 require "application_system_test_case"
 
 class TasksTest < ApplicationSystemTestCase
+  test "visiting the index shows only incomplete tasks" do
+    Task.create!(title: "Incomplete Task", completed: false)
+    Task.create!(title: "Completed Task", completed: true)
+
+    visit tasks_url
+    assert_selector "div#tasks", count: 1
+    assert_text "Incomplete Task"
+    refute_text "Completed Task"
+  end
   setup do
     @task = tasks(:one)
   end
