@@ -1,6 +1,13 @@
 require "test_helper"
 
 class TasksControllerTest < ActionDispatch::IntegrationTest
+  test "should create task with tags" do
+    tag = tags(:one)
+    assert_difference('Task.count') do
+      post tasks_url, params: { task: { title: 'New Task', completed: false, tag_ids: [tag.id] } }
+    end
+    assert_redirected_to task_url(Task.last)
+  end
   setup do
     @task = tasks(:one)
   end
